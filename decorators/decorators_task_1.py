@@ -1,11 +1,18 @@
 import os
+import datetime
 
 
 def logger(old_function):
-    ...
-
     def new_function(*args, **kwargs):
-        ...
+        with open('main.log', 'a') as log_file:
+            now = datetime.datetime.now()
+            log_file.write(
+                f'Date and time: {now.strftime("%d.%m.%Y %H:%M:%S")}\n'
+                f'Function name: {old_function.__name__}\n'
+                f'Arquments: {args, kwargs}\n'
+                f'Return: {old_function(*args, **kwargs)}\n\n'
+            )
+        return old_function(*args, **kwargs)
 
     return new_function
 
