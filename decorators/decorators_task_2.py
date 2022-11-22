@@ -3,11 +3,9 @@ import datetime
 
 
 def logger(path):
-    ...
-
     def __logger(old_function):
         def new_function(*args, **kwargs):
-            with open('main.log', 'a') as log_file:
+            with open(path, 'a') as log_file:
                 now = datetime.datetime.now()
                 log_file.write(
                     f'Date and time: {now.strftime("%d.%m.%Y %H:%M:%S")}\n'
